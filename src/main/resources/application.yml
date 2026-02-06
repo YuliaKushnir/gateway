@@ -19,20 +19,19 @@ spring:
       server:
         default-filters:
           - TokenRelay
-        webflux:
-          routes:
-            - id: posts-service-route
-    #          uri: lb://posts-service
-              uri: http://${POSTS_SERVICE_HOST:posts-service}:${POSTS_SERVICE_PORT:8081}
-              predicates:
-                - Path=/api/post/**
-              filters:
-                - RewritePath=/api/post/(?<remaining>.*), /api/post/${remaining}
-            - id: users-service-route
-              uri: http://${POSTS_SERVICE_HOST:posts-service}:${POSTS_SERVICE_PORT:8081}
-    #          uri: lb://posts-service
-              predicates:
-                - Path=/api/user/**
+        routes:
+          - id: posts-service-route
+  #          uri: lb://posts-service
+            uri: http://${POSTS_SERVICE_HOST:posts-service}:${POSTS_SERVICE_PORT:8081}
+            predicates:
+              - Path=/api/post/**
+            filters:
+              - RewritePath=/api/post/(?<remaining>.*), /api/post/${remaining}
+          - id: users-service-route
+            uri: http://${POSTS_SERVICE_HOST:posts-service}:${POSTS_SERVICE_PORT:8081}
+  #          uri: lb://posts-service
+            predicates:
+              - Path=/api/user/**
 #        - id: mail-service-route
 #          uri: ${MAIL_SERVICE_HOST:mail-service}:${MAIL_SERVICE_PORT:8081}
 
