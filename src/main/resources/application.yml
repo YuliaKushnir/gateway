@@ -47,7 +47,7 @@ spring:
             client-id: ${GOOGLE_CLIENT_ID}
             client-secret: ${GOOGLE_CLIENT_SECRET}
             scope: openid, profile, email
-            redirect-uri: "http://34.118.68.15.nip.io/login/oauth2/code/google"
+            redirect-uri: "http://localhost:1000/login/oauth2/code/google"
             client-name: Google
             client-authentication-method: client_secret_basic
             authorization-grant-type: authorization_code
@@ -59,16 +59,16 @@ spring:
           issuer-uri: https://accounts.google.com
 
 
-resilience4j:
-  circuitbreaker:
-    instances:
-      services:
-        wait-duration-in-open-state: 10s
-        failure-rate-threshold: 60
-        slow-call-duration-threshold:
-          - 2s
-        minimum-number-of-calls: 3
-        permitted-number-of-calls-in-half-open-state: 1
+#resilience4j:
+#  circuitbreaker:
+#    instances:
+#      services:
+#        wait-duration-in-open-state: 10s
+#        failure-rate-threshold: 60
+#        slow-call-duration-threshold:
+#          - 2s
+#        minimum-number-of-calls: 3
+#        permitted-number-of-calls-in-half-open-state: 1
 
 management:
   endpoint:
