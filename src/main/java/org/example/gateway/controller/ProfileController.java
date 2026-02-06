@@ -12,7 +12,7 @@ import java.util.Map;
 @RestController
 public class ProfileController {
 
-    @GetMapping("/profile")
+    @GetMapping("/api/profile")
     public Map<String, Object> profile(@AuthenticationPrincipal OAuth2User oAuth2User, WebSession session) {
         Map<String, Object> profile = new HashMap<>(oAuth2User.getAttributes());
         profile.put("userId", session.getAttribute("userId"));
