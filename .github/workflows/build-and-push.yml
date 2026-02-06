@@ -52,8 +52,8 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ env.REGISTRY }}/${{ steps.image.outputs.name }}:${{ github.sha }}
-            ${{ env.REGISTRY }}/${{ steps.image.outputs.name }}:latest
+            ghcr.io/${{ steps.owner.outputs.value }}/gateway-service:${{ github.sha }}
+            ghcr.io/${{ steps.owner.outputs.value }}/gateway-service:latest
 
   trigger-deploy:
     needs: build
