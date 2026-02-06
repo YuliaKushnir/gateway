@@ -68,7 +68,7 @@ jobs:
           event-type: deploy
           client-payload: |
             {
-              "services": "gateway",
+              "services": "gateway-service",
               "tag": "${{ github.sha }}",
               "source_repo": "${{ github.repository }}",
               "commit_message": "${{ github.event.head_commit.message }}"
