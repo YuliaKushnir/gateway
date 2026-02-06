@@ -4,6 +4,10 @@ server:
     include-message: always
     include-binding-errors: always
 
+ingress:
+  url:
+    "http://34.118.68.15.nip.io"
+
 spring:
   application.name: gateway-service
 #  config:
@@ -21,15 +25,15 @@ spring:
           - TokenRelay
         routes:
           - id: posts-service-route
-  #          uri: lb://posts-service
-            uri: http://${POSTS_SERVICE_HOST:posts-service}:${POSTS_SERVICE_PORT:8081}
+            uri: lb://posts-service
+#            uri: http://${POSTS_SERVICE_HOST:posts-service}:${POSTS_SERVICE_PORT:8081}
             predicates:
               - Path=/api/post/**
             filters:
               - RewritePath=/api/post/(?<remaining>.*), /api/post/${remaining}
           - id: users-service-route
-            uri: http://${POSTS_SERVICE_HOST:posts-service}:${POSTS_SERVICE_PORT:8081}
-  #          uri: lb://posts-service
+#            uri: http://${POSTS_SERVICE_HOST:posts-service}:${POSTS_SERVICE_PORT:8081}
+            uri: lb://posts-service
             predicates:
               - Path=/api/user/**
 #        - id: mail-service-route

@@ -1,5 +1,6 @@
 package org.example.gateway.service;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.security.web.server.WebFilterExchange;
@@ -16,8 +17,11 @@ public class OAuth2LoginSuccessHandler implements ServerAuthenticationSuccessHan
 
     private final WebClient webClient;
 
+    @Value("${ingress.url}")
+    private String mainUri;
+
     private final RedirectServerAuthenticationSuccessHandler redirectHandler =
-            new RedirectServerAuthenticationSuccessHandler("http://34.118.68.15.nip.io");
+            new RedirectServerAuthenticationSuccessHandler(mainUri);
 
     public OAuth2LoginSuccessHandler(WebClient webClient) {
         this.webClient = webClient;
