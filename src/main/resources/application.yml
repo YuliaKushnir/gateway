@@ -14,6 +14,7 @@ spring:
 #      port: 8500
 #      discovery:
 #        health-check-path: /health
+
     gateway:
       server:
         default-filters:
