@@ -4,23 +4,13 @@ server:
     include-message: always
     include-binding-errors: always
 
-ingress:
-  url:
-    "http://34.118.68.15.nip.io"
-
 spring:
   application.name: gateway-service
-#  config:
-#    import: optional:consul:/
-  cloud:
-#    consul:
-#      host: localhost
-#      port: 8500
-#      discovery:
-#        health-check-path: /health
 
+  cloud:
     gateway:
       server:
+        forward-headers-strategy: framework
         default-filters:
           - TokenRelay
         routes:
@@ -36,13 +26,7 @@ spring:
 #            uri: lb://posts-service
             predicates:
               - Path=/api/user/**
-#        - id: mail-service-route
-#          uri: ${MAIL_SERVICE_HOST:mail-service}:${MAIL_SERVICE_PORT:8081}
 
-        #          - id: comment_route
-        #            uri: lb://comments-service
-        #            predicates:
-        #              - Path=/api/comment/**
   security:
     oauth2:
       client:
@@ -51,8 +35,7 @@ spring:
             client-id: ${GOOGLE_CLIENT_ID}
             client-secret: ${GOOGLE_CLIENT_SECRET}
             scope: openid, profile, email
-            #   http://34.118.68.15.nip.io/login/oauth2/code/google
-            redirect-uri: "{base_url}/login/oauth2/code/google"
+            redirect-uri: http://34.118.68.15.nip.io/login/oauth2/code/google
             client-name: Google
             client-authentication-method: client_secret_basic
             authorization-grant-type: authorization_code
@@ -63,18 +46,6 @@ spring:
         jwt:
           issuer-uri: https://accounts.google.com
 
-
-#resilience4j:
-#  circuitbreaker:
-#    instances:
-#      services:
-#        wait-duration-in-open-state: 10s
-#        failure-rate-threshold: 60
-#        slow-call-duration-threshold:
-#          - 2s
-#        minimum-number-of-calls: 3
-#        permitted-number-of-calls-in-half-open-state: 1
-
 management:
   endpoint:
     health:
@@ -84,3 +55,8 @@ management:
       base-path: /
       exposure:
         include: "*"
+
+logging:
+  level:
+    org.springframework.security.oauth2.client.endpoint: DEBUG
+    org.springframework.security.oauth2.client.web: DEBUG
