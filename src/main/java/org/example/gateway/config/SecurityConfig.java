@@ -7,6 +7,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.web.server.SecurityWebFilterChain;
+import org.springframework.web.server.adapter.ForwardedHeaderTransformer;
 
 @EnableWebFluxSecurity
 @Configuration
@@ -33,5 +34,12 @@ public class SecurityConfig {
                 );
 
         return http.build();
+    }
+
+    @Bean
+    public ForwardedHeaderTransformer forwardedHeaderTransformer() {
+        ForwardedHeaderTransformer transformer = new ForwardedHeaderTransformer();
+        transformer.setRemoveOnly(false);
+        return transformer;
     }
 }
