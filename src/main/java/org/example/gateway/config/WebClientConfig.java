@@ -9,7 +9,6 @@ public class WebClientConfig {
 
     @Bean
     public WebClient webClient(WebClient.Builder builder) {
-        System.out.println("NEW VERSION REALLY BUILDED");
         return builder.build();
     }
 }
