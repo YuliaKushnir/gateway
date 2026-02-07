@@ -10,13 +10,10 @@ import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 @Configuration
 public class CorsGlobalConfiguration {
 
-    @Value("${ingress.url}")
-    private String mainUri;
-
     @Bean
     public CorsWebFilter corsWebFilter() {
         CorsConfiguration corsConfig = new CorsConfiguration();
-        corsConfig.addAllowedOrigin(mainUri);
+        corsConfig.addAllowedOrigin("http://34.118.68.15.nip.io");
         corsConfig.addAllowedMethod("*");
         corsConfig.addAllowedHeader("*");
         corsConfig.setAllowCredentials(true);
