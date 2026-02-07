@@ -1,5 +1,6 @@
 server:
   port: 1000
+  forward-headers-strategy: framework
   error:
     include-message: always
     include-binding-errors: always
@@ -10,7 +11,6 @@ spring:
   cloud:
     gateway:
       server:
-        forward-headers-strategy: framework
         default-filters:
           - TokenRelay
         routes:
@@ -35,7 +35,7 @@ spring:
             client-id: ${GOOGLE_CLIENT_ID}
             client-secret: ${GOOGLE_CLIENT_SECRET}
             scope: openid, profile, email
-            redirect-uri: http://34.118.68.15.nip.io/login/oauth2/code/google
+            redirect-uri: "{baseUrl}/login/oauth2/code/google"
             client-name: Google
             client-authentication-method: client_secret_basic
             authorization-grant-type: authorization_code
@@ -58,5 +58,5 @@ management:
 
 logging:
   level:
-    org.springframework.security.oauth2.client.endpoint: DEBUG
-    org.springframework.security.oauth2.client.web: DEBUG
+    org.springframework.security.oauth2: TRACE
+    org.springframework.web.server.adapter.ForwardedHeaderTransformer: DEBUG
