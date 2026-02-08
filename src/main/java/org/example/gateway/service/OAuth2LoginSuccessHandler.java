@@ -17,7 +17,7 @@ public class OAuth2LoginSuccessHandler implements ServerAuthenticationSuccessHan
     private final WebClient webClient;
 
     private final RedirectServerAuthenticationSuccessHandler redirectHandler =
-            new RedirectServerAuthenticationSuccessHandler("http://34.118.68.15.nip.io");
+            new RedirectServerAuthenticationSuccessHandler("https://34.118.68.15.nip.io");
 
     public OAuth2LoginSuccessHandler(WebClient webClient) {
         this.webClient = webClient;
