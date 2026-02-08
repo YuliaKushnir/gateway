@@ -46,11 +46,11 @@ public class SecurityConfig {
         return transformer;
     }
 
-    @Bean
-    public ForwardedHeadersFilter forwardedHeadersFilter() {
-        return new ForwardedHeadersFilter();
-    }
-
+//    @Bean
+//    public ForwardedHeadersFilter forwardedHeadersFilter() {
+//        return new ForwardedHeadersFilter();
+//    }
+//
     @Bean
     public XForwardedHeadersFilter xForwardedHeadersFilter() {
         return new XForwardedHeadersFilter();
