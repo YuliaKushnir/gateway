@@ -10,22 +10,35 @@ spring:
 
   cloud:
     gateway:
-      server:
-        default-filters:
-          - TokenRelay
-        routes:
-          - id: posts-service-route
-#            uri: lb://posts-service
-            uri: http://${POSTS_SERVICE_HOST:posts-service}:${POSTS_SERVICE_PORT:8081}
-            predicates:
-              - Path=/api/post/**
-            filters:
-              - RewritePath=/api/post/(?<remaining>.*), /api/post/${remaining}
-          - id: users-service-route
-            uri: http://${POSTS_SERVICE_HOST:posts-service}:${POSTS_SERVICE_PORT:8081}
-#            uri: lb://posts-service
-            predicates:
-              - Path=/api/user/**
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "http://34.118.68.15.nip.io"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - PATCH
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
+            allowCredentials: true
+#      server:
+#        default-filters:
+#          - TokenRelay
+      routes:
+        - id: posts-service-route
+#           uri: lb://posts-service
+          uri: http://${POSTS_SERVICE_HOST:posts-service}:${POSTS_SERVICE_PORT:8081}
+          predicates:
+            - Path=/api/post/**
+          filters:
+            - RewritePath=/api/post/(?<remaining>.*), /api/post/${remaining}
+        - id: users-service-route
+          uri: http://${POSTS_SERVICE_HOST:posts-service}:${POSTS_SERVICE_PORT:8081}
+          predicates:
+            - Path=/api/user/**
+#           uri: lb://posts-service
 
   security:
     oauth2:
@@ -35,7 +48,7 @@ spring:
             client-id: ${GOOGLE_CLIENT_ID}
             client-secret: ${GOOGLE_CLIENT_SECRET}
             scope: openid, profile, email
-            redirect_uri: http://34.118.68.15.nip.io/login/oauth2/code/google
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
 #            redirect_uri: http://34.118.68.15.nip.io/api/login/oauth2/code/google
             client-name: Google
             client-authentication-method: client_secret_basic
