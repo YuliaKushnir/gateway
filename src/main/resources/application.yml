@@ -1,6 +1,6 @@
 server:
   port: 1000
-  forward-headers-strategy: framework
+#  forward-headers-strategy: framework
   error:
     include-message: always
     include-binding-errors: always
@@ -10,22 +10,8 @@ spring:
 
   cloud:
     gateway:
-#      globalcors:
-#        cors-configurations:
-#          '[/**]':
-#            allowedOrigins: "http://34.118.68.15.nip.io"
-#            allowedMethods:
-#              - GET
-#              - POST
-#              - PUT
-#              - PATCH
-#              - DELETE
-#              - OPTIONS
-#            allowedHeaders: "*"
-#            allowCredentials: true
-#      server:
-#        default-filters:
-#          - TokenRelay
+      forward-headers-strategy: framework
+
       routes:
         - id: posts-service-route
 #           uri: lb://posts-service
