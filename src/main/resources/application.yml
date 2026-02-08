@@ -35,7 +35,8 @@ spring:
             client-id: ${GOOGLE_CLIENT_ID}
             client-secret: ${GOOGLE_CLIENT_SECRET}
             scope: openid, profile, email
-            redirect_uri: http://34.118.68.15.nip.io/api/login/oauth2/code/google
+            redirect_uri: "{baseUrl}/login/oauth2/code/google"
+#            redirect_uri: http://34.118.68.15.nip.io/api/login/oauth2/code/google
             client-name: Google
             client-authentication-method: client_secret_basic
             authorization-grant-type: authorization_code
