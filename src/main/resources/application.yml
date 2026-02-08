@@ -10,7 +10,7 @@ spring:
 
   cloud:
     gateway:
-      forward-headers-strategy: framework
+      forwarded-headers-strategy: framework
 
       routes:
         - id: posts-service-route
