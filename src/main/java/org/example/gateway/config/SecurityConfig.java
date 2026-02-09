@@ -39,12 +39,12 @@ public class SecurityConfig {
         return http.build();
     }
 
-    @Bean
-    public ForwardedHeaderTransformer forwardedHeaderTransformer() {
-        ForwardedHeaderTransformer transformer = new ForwardedHeaderTransformer();
-        transformer.setRemoveOnly(true);
-        return transformer;
-    }
+//    @Bean
+//    public ForwardedHeaderTransformer forwardedHeaderTransformer() {
+//        ForwardedHeaderTransformer transformer = new ForwardedHeaderTransformer();
+//        transformer.setRemoveOnly(false);
+//        return transformer;
+//    }
 
 //    @Bean
 //    public ForwardedHeadersFilter forwardedHeadersFilter() {

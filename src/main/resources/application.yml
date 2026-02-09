@@ -5,6 +5,13 @@ server:
     include-message: always
     include-binding-errors: always
 
+oauth:
+    google:
+      client-id: ${GOOGLE_CLIENT_ID}
+      client-secret: ${GOOGLE_CLIENT_SECRET}
+      scope: "openid, profile, email"
+      redirect-uri: "https://34.118.68.15.nip.io/api/login/oauth2/code/google"
+
 spring:
   application.name: gateway-service
 
@@ -26,21 +33,21 @@ spring:
             - Path=/api/user/**
 #           uri: lb://posts-service
 
-  security:
-    oauth2:
-      client:
-        registration:
-          google:
-            client-id: ${GOOGLE_CLIENT_ID}
-            client-secret: ${GOOGLE_CLIENT_SECRET}
-            scope: openid, profile, email
-#            redirect_uri: https://34.118.68.15.nip.io/api/login/oauth2/code/google
-            client-name: Google
-            client-authentication-method: client_secret_basic
-            authorization-grant-type: authorization_code
-        provider:
-          google:
-            issuer-uri: https://accounts.google.com
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          google:
+#            client-id: ${GOOGLE_CLIENT_ID}
+#            client-secret: ${GOOGLE_CLIENT_SECRET}
+#            scope: openid, profile, email
+##            redirect_uri: https://34.118.68.15.nip.io/api/login/oauth2/code/google
+#            client-name: Google
+#            client-authentication-method: client_secret_basic
+#            authorization-grant-type: authorization_code
+#        provider:
+#          google:
+#            issuer-uri: https://accounts.google.com
 #      resourceserver:
 #        jwt:
 #          issuer-uri: https://accounts.google.com
