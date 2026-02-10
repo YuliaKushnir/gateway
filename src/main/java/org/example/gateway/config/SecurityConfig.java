@@ -37,10 +37,10 @@ public class SecurityConfig {
 //                        .pathMatchers("/actuator/**", "/health").permitAll()
 //                        .anyExchange().authenticated()
                         .anyExchange().permitAll()
-                )
-                .oauth2Login(oauth2 -> oauth2
-                        .authenticationSuccessHandler(successHandler)
                 );
+//                .oauth2Login(oauth2 -> oauth2
+//                        .authenticationSuccessHandler(successHandler)
+//                );
 
         return http.build();
     }
