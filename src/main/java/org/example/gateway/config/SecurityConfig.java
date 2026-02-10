@@ -9,7 +9,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.web.server.SecurityWebFilterChain;
-import org.springframework.security.web.server.authentication.RedirectServerAuthenticationSuccessHandler;
 import org.springframework.web.server.adapter.ForwardedHeaderTransformer;
 
 @EnableWebFluxSecurity
@@ -27,36 +26,19 @@ public class SecurityConfig {
         http
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .authorizeExchange(exchange -> exchange
-                        .pathMatchers("/api/login/**", "/api/oauth2/**").permitAll()
-                        .pathMatchers("/login/**", "/oauth2/**").permitAll()
+                        .pathMatchers(
+                                "/api/login/oauth2/**",
+                                "/login/oauth2/**",
+                                "/oauth2/**")
+                        .permitAll()
                         .pathMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .pathMatchers("/actuator/**", "/health").permitAll()
                         .anyExchange().authenticated()
                 )
-//                .oauth2Login(oauth2 -> oauth2
-//                        .authenticationSuccessHandler(successHandler)
-//                );
                 .oauth2Login(oauth2 -> oauth2
-                        .authenticationSuccessHandler(new RedirectServerAuthenticationSuccessHandler("http://34.118.68.15.nip.io"))
+                        .authenticationSuccessHandler(successHandler)
                 );
 
         return http.build();
     }
-
-//    @Bean
-//    public ForwardedHeaderTransformer forwardedHeaderTransformer() {
-//        ForwardedHeaderTransformer transformer = new ForwardedHeaderTransformer();
-//        transformer.setRemoveOnly(false);
-//        return transformer;
-//    }
-
-//    @Bean
-//    public ForwardedHeadersFilter forwardedHeadersFilter() {
-//        return new ForwardedHeadersFilter();
-//    }
-//
-//    @Bean
-//    public XForwardedHeadersFilter xForwardedHeadersFilter() {
-//        return new XForwardedHeadersFilter();
-//    }
 }
