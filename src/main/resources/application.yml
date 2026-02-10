@@ -1,6 +1,6 @@
 server:
   port: 1000
-#  forward-headers-strategy: native
+  forward-headers-strategy: none
   error:
     include-message: always
     include-binding-errors: always
