@@ -15,13 +15,13 @@ spring:
       routes:
         - id: posts-service-route
 #           uri: lb://posts-service
-          uri: http://${POSTS_SERVICE_HOST:posts-service}:${POSTS_SERVICE_PORT:8081}
+          uri: http://${POSTS_SERVICE_HOST:posts-service}:${POSTS_SERVICE_PORT:8080}
           predicates:
             - Path=/api/post/**
           filters:
             - RewritePath=/api/post/(?<remaining>.*), /api/post/${remaining}
         - id: users-service-route
-          uri: http://${POSTS_SERVICE_HOST:posts-service}:${POSTS_SERVICE_PORT:8081}
+          uri: http://${POSTS_SERVICE_HOST:posts-service}:${POSTS_SERVICE_PORT:8080}
           predicates:
             - Path=/api/user/**
 #           uri: lb://posts-service
