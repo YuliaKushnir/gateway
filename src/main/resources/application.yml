@@ -40,7 +40,7 @@ spring:
             authorization-grant-type: authorization_code
         provider:
           google:
-            issuer-uri: https://accounts.google.com
+            issuer-uri: http://accounts.google.com
 #      resourceserver:
 #        jwt:
 #          issuer-uri: https://accounts.google.com

@@ -32,7 +32,7 @@ public class OAuth2LoginSuccessHandler implements ServerAuthenticationSuccessHan
         OidcUser oidcUser = (OidcUser) authentication.getPrincipal();
 
         return webClient.post()
-                .uri("https://posts-service:8080/api/internal/user/oauth")
+                .uri("http://posts-service:8080/api/internal/user/oauth")
                 .bodyValue(Map.of(
                         "email", oidcUser.getEmail(),
                         "name", oidcUser.getFullName()
