@@ -29,7 +29,9 @@ public class SecurityConfig {
                         .pathMatchers(
                                 "/api/login/oauth2/**",
                                 "/login/oauth2/**",
-                                "/oauth2/**")
+                                "/oauth2/**",
+                                "/api/user/**",
+                                "/api/post/**")
                         .permitAll()
                         .pathMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .pathMatchers("/actuator/**", "/health").permitAll()
