@@ -26,16 +26,17 @@ public class SecurityConfig {
         http
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .authorizeExchange(exchange -> exchange
-                        .pathMatchers(
-                                "/api/login/oauth2/**",
-                                "/login/oauth2/**",
-                                "/oauth2/**",
-                                "/api/user/**",
-                                "/api/post/**")
-                        .permitAll()
-                        .pathMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                        .pathMatchers("/actuator/**", "/health").permitAll()
-                        .anyExchange().authenticated()
+//                        .pathMatchers(
+//                                "/api/login/oauth2/**",
+//                                "/login/oauth2/**",
+//                                "/oauth2/**",
+//                                "/api/user/**",
+//                                "/api/post/**")
+//                        .permitAll()
+//                        .pathMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+//                        .pathMatchers("/actuator/**", "/health").permitAll()
+//                        .anyExchange().authenticated()
+                        .anyExchange().permitAll()
                 )
                 .oauth2Login(oauth2 -> oauth2
                         .authenticationSuccessHandler(successHandler)
