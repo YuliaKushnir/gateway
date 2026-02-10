@@ -9,6 +9,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.web.server.SecurityWebFilterChain;
+import org.springframework.security.web.server.authentication.RedirectServerAuthenticationSuccessHandler;
 import org.springframework.web.server.adapter.ForwardedHeaderTransformer;
 
 @EnableWebFluxSecurity
@@ -32,8 +33,11 @@ public class SecurityConfig {
                         .pathMatchers("/actuator/**", "/health").permitAll()
                         .anyExchange().authenticated()
                 )
+//                .oauth2Login(oauth2 -> oauth2
+//                        .authenticationSuccessHandler(successHandler)
+//                );
                 .oauth2Login(oauth2 -> oauth2
-                        .authenticationSuccessHandler(successHandler)
+                        .authenticationSuccessHandler(new RedirectServerAuthenticationSuccessHandler("http://34.118.68.15.nip.io"))
                 );
 
         return http.build();
