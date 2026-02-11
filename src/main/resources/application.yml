@@ -21,21 +21,21 @@ spring:
           predicates:
             - Path=/api/user/**
 
-#  security:
-#    oauth2:
-#      client:
-#        registration:
-#          google:
-#            client-id: ${GOOGLE_CLIENT_ID}
-#            client-secret: ${GOOGLE_CLIENT_SECRET}
-#            scope: openid, profile, email
-#            redirect-uri: "{baseUri}/api/login/oauth2/code/google"
-#            client-name: Google
-#            client-authentication-method: client_secret_basic
-#            authorization-grant-type: authorization_code
-#        provider:
-#          google:
-#            issuer-uri: https://accounts.google.com
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+            scope: openid, profile, email
+            redirect-uri: "{baseUri}/login/oauth2/code/google"
+            client-name: Google
+            authorization-grant-type: authorization_code
+        provider:
+          google:
+            issuer-uri: https://accounts.google.com
+
 #      resourceserver:
 #        jwt:
 #          issuer-uri: https://accounts.google.com
