@@ -6,24 +6,20 @@ server:
 
 spring:
   application.name: gateway-service
-
   cloud:
     gateway:
 #      forwarded-headers-strategy: framework
-
       routes:
-        - id: posts-service-route
-#           uri: lb://posts-service
-          uri: http://${POSTS_SERVICE_HOST:posts-service}:${POSTS_SERVICE_PORT:8080}
+        - id: posts-service-post-route
+#          uri: http://${POSTS_SERVICE_HOST:posts-service}:${POSTS_SERVICE_PORT:8080}
+          uri: http://posts-service:8080
           predicates:
             - Path=/api/post/**
-          filters:
-            - RewritePath=/api/post/(?<remaining>.*), /api/post/${remaining}
-        - id: users-service-route
-          uri: http://${POSTS_SERVICE_HOST:posts-service}:${POSTS_SERVICE_PORT:8080}
+        - id: posts-service-user-route
+#          uri: http://${POSTS_SERVICE_HOST:posts-service}:${POSTS_SERVICE_PORT:8080}
+          uri: http://posts-service:8080
           predicates:
             - Path=/api/user/**
-#           uri: lb://posts-service
 
 #  security:
 #    oauth2:
