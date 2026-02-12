@@ -21,20 +21,20 @@ spring:
           predicates:
             - Path=/api/user/**
 
-  security:
-    oauth2:
-      client:
-        registration:
-          google:
-            client-id: ${GOOGLE_CLIENT_ID}
-            client-secret: ${GOOGLE_CLIENT_SECRET}
-            scope: openid, profile, email
-            redirect-uri: "https://34.118.111.172/login/oauth2/code/google"
-            client-name: Google
-            authorization-grant-type: authorization_code
-        provider:
-          google:
-            issuer-uri: https://accounts.google.com
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          google:
+#            client-id: ${GOOGLE_CLIENT_ID}
+#            client-secret: ${GOOGLE_CLIENT_SECRET}
+#            scope: openid, profile, email
+#            redirect-uri: "https://34.118.111.172/login/oauth2/code/google"
+#            client-name: Google
+#            authorization-grant-type: authorization_code
+#        provider:
+#          google:
+#            issuer-uri: https://accounts.google.com
 
 #      resourceserver:
 #        jwt:
@@ -49,8 +49,3 @@ management:
     web:
       exposure:
         include: health,info
-
-logging:
-  level:
-    org.springframework.security.oauth2: TRACE
-    org.springframework.web.server.adapter.ForwardedHeaderTransformer: DEBUG
